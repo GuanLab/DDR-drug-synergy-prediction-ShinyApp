@@ -14,18 +14,20 @@
 
 library(shiny)
 ###### call lightGBM in R 
-require(lightgbm)
+library(lightgbm)
 
 ###### call python in R package
-require(reticulate)
-require(DT)
+library(reticulate)
+library(DT)
+
 # load pre-trained lightGBM model
-use_python("/Users/rayezhang/anaconda3/bin/python")
+
+
 #py_install("pandas") #install pandas in R
 #py_install("lightgbm")
 #py_install("shap")
-source_python("./dependency/main_prediction.py")
-p_data <- read.table('./dependency/input/example_input.tsv', header = TRUE)
+reticulate::source_python(here::here("./dependency/main_prediction.py"))
+p_data <- read.table(here::here('./dependency/input/example_input.tsv'), header = TRUE)
 #df_drugs <- predict_optimal_drug_combination(p_data)
 
 # Define UI for application that draws a histogram
@@ -55,7 +57,7 @@ ui = basicPage(
 server <- function(input, output) {
    output$mytable <- DT::renderDataTable({
       
-      req = input$file1
+      shiny::req(input$file1)
       p_data <- read.table(input$file1$datapath, header = TRUE)
       df_drugs <- predict_optimal_drug_combination(p_data)
       return(df_drugs)

@@ -24,7 +24,7 @@ class encode_categorical_feature():
     cancer_subtype: dict
     """
 
-    data = pd.read_csv('./dependency/feature/QC/all_drugs_summary.csv')
+    data = pd.read_csv('../dependency/feature/QC/all_drugs_summary.csv')
 
     def __init__(self):
         self.moa = defaultdict(lambda:np.nan, {j:i for i, j in enumerate(self.data['mode-of-action'].to_list())})
@@ -79,17 +79,17 @@ def build_feature_dataset(data, mol, features):
     """
 
     # load feature datasets
-    all_chemical_structure = pd.read_csv('./dependency/feature/chemical_structure_features/all_chemical_structure.csv', index_col = 0)
-    geneset = pd.read_csv('./dependency/feature/geneset_features/geneset_features.csv', index_col = 0)
-    ceres_cancer_dependency = json.load(open('./dependency/feature/cancer_dependency_features/integrated_Sanger_Broad_essentiality_matrices_20200402/CERES_FC_dep.json', 'r'))
-    crisprclear_cancer_dependency = json.load(open('./dependency/feature/cancer_dependency_features/integrated_Sanger_Broad_essentiality_matrices_20200402/CRISPRcleanR_FC_dep.json', 'r'))
+    all_chemical_structure = pd.read_csv('../dependency/feature/chemical_structure_features/all_chemical_structure.csv', index_col = 0)
+    geneset = pd.read_csv('../dependency/feature/geneset_features/geneset_features.csv', index_col = 0)
+    # ceres_cancer_dependency = json.load(open('../dependency/feature/cancer_dependency_features/integrated_Sanger_Broad_essentiality_matrices_20200402/CERES_FC_dep.json', 'r'))
+    # crisprclear_cancer_dependency = json.load(open('../dependency/feature/cancer_dependency_features/integrated_Sanger_Broad_essentiality_matrices_20200402/CRISPRcleanR_FC_dep.json', 'r'))
 
     # load drug-specific target gene information
-    drug2gene = json.load(open('./dependency/feature/target_gene/drug2gene.json','r'))
+    drug2gene = json.load(open('../dependency/feature/target_gene/drug2gene.json','r'))
     drug2gene = defaultdict(lambda:[], drug2gene)
 
     # load gene network information from mousenet
-    network = pickle.load(open('./dependency/feature/mousenet_features/target_gene_network.pkl','rb'))
+    network = pickle.load(open('../dependency/feature/mousenet_features/target_gene_network.pkl','rb'))
 
     # categotical encoding
     encode = encode_categorical_feature() 
@@ -320,10 +320,10 @@ def build_feature_dataset(data, mol, features):
             feature_names += dr_name
             feature_values += dr_feature
 
-        if 'monotherapy' in features:
-            mono_name, mono_feature = monotherapy_feature(row)
-            feature_names += mono_name
-            feature_values += mono_feature
+        # if 'monotherapy' in features:
+        #     mono_name, mono_feature = monotherapy_feature(row)
+        #     feature_names += mono_name
+        #     feature_values += mono_feature
 
         if 'molecular' in features:
             include_target_gene = False
@@ -380,7 +380,7 @@ def predict_combination_effect(X,feature_names,pred_target):
     Yields
     ------
     """
-    all_model_path = glob('./dependency/saved_models/*_'+pred_target+'_*.model')
+    all_model_path = glob('../dependency/saved_models/*'+pred_target+'_*.model')
     all_pred = []
     all_shap = []
     for model_path in all_model_path:
@@ -411,7 +411,7 @@ def predict_optimal_drug_combination(mol_df):
     best drug combinations based on prediction
 
     """
-    all_drugs =pd.read_csv('./dependency/feature/QC/all_drugs_summary.csv')
+    all_drugs =pd.read_csv('../dependency/feature/QC/all_drugs_summary.csv')
 
     # create a list all drug combinations as test set
     df = {'.metadata_moa_1':[],'.metadata_moa_2':[],'.metadata_treatment_1':[],'.metadata_treatment_2':[]}
