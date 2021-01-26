@@ -25,7 +25,7 @@ class encode_categorical_feature():
     cancer_subtype: dict
     """
 
-    data = pd.read_csv('./dependency/feature/QC/all_drugs_summary.csv')
+    data = pd.read_csv('../dependency/feature/QC/all_drugs_summary.csv')
 
     def __init__(self):
         self.moa = defaultdict(lambda:np.nan, {j:i for i, j in enumerate(self.data['mode-of-action'].to_list())})

@@ -19,15 +19,16 @@ library(lightgbm)
 ###### call python in R package
 library(reticulate)
 library(DT)
-
+library(here)
+library(dplyr)
 # load pre-trained lightGBM model
 
 
 #py_install("pandas") #install pandas in R
 #py_install("lightgbm")
 #py_install("shap")
-reticulate::source_python(here::here("./dependency/main_prediction.py"))
-p_data <- read.table(here::here('./dependency/input/example_input.tsv'), header = TRUE)
+reticulate::source_python(here::here("dependency/main_prediction.py"))
+p_data <- read.table(here::here('dependency/input/example_input.tsv'), header = TRUE)
 #df_drugs <- predict_optimal_drug_combination(p_data)
 
 # Define UI for application that draws a histogram
