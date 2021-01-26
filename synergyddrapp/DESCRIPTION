@@ -1,0 +1,32 @@
+Package: synergyddrapp
+Title: Shiny app for drug synergy prediction
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Hanrui",
+           family = "Zhang",
+           role = c("aut", "cre"),
+           email = "first.last@example.com",
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+    person(given = "Julian",
+           family = "Kreis",
+           role = c("aut", "cre"),
+           email = "julian.kreis@external.merckgroup.com")
+Description: What the package does (one paragraph).
+License: `use_mit_license()`, `use_gpl3_license()` or friends to
+    pick a license
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Suggests: 
+    testthat (>= 3.0.0),
+    covr
+Config/testthat/edition: 3
+Imports: 
+    lightgbm,
+    readr,
+    here,
+    reticulate,
+    dplyr
+Depends: 
+    R (>= 2.10)
