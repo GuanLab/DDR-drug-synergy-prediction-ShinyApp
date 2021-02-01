@@ -1,3 +1,5 @@
+# translate from python to R
+
 import pandas as pd
 import numpy as np
 import lightgbm as lgb
@@ -81,8 +83,6 @@ def build_feature_dataset(data, mol, features, data_path):
     # load feature datasets
     all_chemical_structure = pd.read_csv(data_path + '/feature/chemical_structure_features/all_chemical_structure.csv', index_col = 0)
     geneset = pd.read_csv(data_path + '/feature/geneset_features/geneset_features.csv', index_col = 0)
-    # ceres_cancer_dependency = json.load(open('../dependency/feature/cancer_dependency_features/integrated_Sanger_Broad_essentiality_matrices_20200402/CERES_FC_dep.json', 'r'))
-    # crisprclear_cancer_dependency = json.load(open('../dependency/feature/cancer_dependency_features/integrated_Sanger_Broad_essentiality_matrices_20200402/CRISPRcleanR_FC_dep.json', 'r'))
 
     # load drug-specific target gene information
     drug2gene = json.load(open(data_path + '/feature/target_gene/drug2gene.json','r'))
