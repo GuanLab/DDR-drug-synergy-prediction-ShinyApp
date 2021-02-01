@@ -1,3 +1,5 @@
+library(synergyddrapp)
+
 test_that("output for optimal combination prediction is equal", {
   
   # access example file

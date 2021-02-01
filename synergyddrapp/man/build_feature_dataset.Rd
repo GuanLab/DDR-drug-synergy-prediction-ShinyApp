@@ -4,12 +4,10 @@
 \alias{build_feature_dataset}
 \title{Build feature set for machine learning model}
 \usage{
-build_feature_dataset(data, mol, features, target, data_path)
+build_feature_dataset(data, mol, target, data_path)
 }
 \arguments{
 \item{mol}{Molecular signatures from untreated sample}
-
-\item{features}{drug_name, chemical_structure, molecular (top125), geneset (top125)}
 
 \item{target}{'aoc' or bliss'}
 }
@@ -17,5 +15,5 @@ build_feature_dataset(data, mol, features, target, data_path)
 
 }
 \description{
-Build feature set for machine learning model
+description
 }

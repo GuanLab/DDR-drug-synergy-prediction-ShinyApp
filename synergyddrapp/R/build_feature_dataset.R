@@ -3,14 +3,13 @@
 #' description
 #' 
 #' @param mol Molecular signatures from untreated sample
-#' @param features drug_name, chemical_structure, molecular (top125), geneset (top125)
 #' @param target 'aoc' or bliss'
 #' @return 
 #' @export
 #' 
 #' 
 ##liberary(jsonlite)
-build_feature_dataset <- function(data, mol, features, target, data_path){
+build_feature_dataset <- function(data, mol, target, data_path){
   # load feature datasets
   # chemical structure
   all_chemical_structure = synergyddrapp::chemical_structures
@@ -31,43 +30,10 @@ build_feature_dataset <- function(data, mol, features, target, data_path){
   # load drug-specific target gene information
   drug2gene = synergyddrapp::drug2gene # example drug2gene[[drugname]] = target gene
   
-  # categorical encoding
-  # drug2idx()
-  # moa2idx()
-  
-  build_features <- function(row){
-
-    # moa features (2)
-    moa2idx(row$)
-    # drug name features (2)
-    drug2idx()
-    # chemical structure feature (xxxx*2)
-    all_chemical_structure
-    # molecular feature (125)
-      #target genes and networks
-      target_genes <- unique(c(drug2gene(drug1), drug2gene(drug2)))
-      target_genes_exp = paste0(target_genes,'_exp')
-      mol[mol[''] == target_genes_exp, ] <-0
-      
-    #gene set (125) 
-      genes <- intersect(colnames(geneset)[-1], target_genes)
-      feature_val <- rowSums(geneset[,genes])
-      feature_name <- geneset[['geneset']]
-      
-    # X, feature_names
-  }
-  chemcicals_1 = all_chemical_structure
-  colnames(chemcicals_1)[-1] = paste0(colnames(chemcicals_1)[-1], "_1")
-  chemcicals_2 = all_chemical_structure
-  colnames(chemcicals_2)[-1] = paste0(colnames(chemcicals_2)[-1], "_2")
-  
-  get_target = 
-
-  apply(data, 1, function(x) {paste0(unlist(drug2gene[[x[[3]]]]), "_exp")})
-  
-  tmp = data %>%
-    dplyr::left_join(chemcicals_1, by=c(".metadata_treatment_1"="treatment")) %>%
-    dplyr::left_join(chemcicals_2, by=c(".metadata_treatment_2"="treatment")) %>%
+  data %>%
+    dplyr::left_join(all_chemical_structure, by=c(".metadata_treatment_1"="treatment")) %>%
+    dplyr::left_join(all_chemical_structure, by=c(".metadata_treatment_2"="treatment"),
+                     suffix=c("_1", "_2")) %>%
     dplyr::rowwise() %>%
     dplyr::mutate(target_genes_1 = purrr::map2(.metadata_treatment_1, .metadata_treatment_2, function(x, y){
     
@@ -82,10 +48,10 @@ build_feature_dataset <- function(data, mol, features, target, data_path){
       tibble::column_to_rownames("geneset") %>% 
       rowSums %>% 
       t() %>%
-      tibble::as.tibble(.)
+      tibble::as_tibble(.)
 
     res = geneset_counts
-    if (length(genes) == 0) {
+    if (length(genes) > 0) {
       genes = paste0(genes, "_exp")
       mol_ = mol[, get(paste0("genes_", target))]
       mol_[, genes] = 0
@@ -100,7 +66,6 @@ build_feature_dataset <- function(data, mol, features, target, data_path){
                   .metadata_treatment_1 = as.numeric(as.factor(.metadata_treatment_1)),
                   .metadata_treatment_2 = as.numeric(as.factor(.metadata_treatment_2))) 
 
-  # X,feature_names <- build_features(data) 
 }
 
 

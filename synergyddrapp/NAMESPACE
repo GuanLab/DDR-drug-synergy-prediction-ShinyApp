@@ -3,6 +3,7 @@
 export(build_feature_dataset)
 export(drug2idx)
 export(moa2idx)
+export(predict_combination_effect)
 export(predict_optimal_drug_combination)
 import(dplyr)
 import(here)
