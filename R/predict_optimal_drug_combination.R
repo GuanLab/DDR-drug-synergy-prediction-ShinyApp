@@ -29,10 +29,14 @@ predict_optimal_drug_combination = function(mol_df, data_path) {
 
     # predict efficacy:
     pred_aoc = synergyddrapp::predict_combination_effect(X=features, pred_target='aoc')
-
+    feature_shap_aoc = synergyddrapp::predict_combination_effect(X=features, pred_target='aoc', predcontrib=TRUE)
+     
     pred_bliss = synergyddrapp::predict_combination_effect(X=features, pred_target='bliss')
+    feature_shap_bliss = synergyddrapp::predict_combination_effect(X=features, pred_target='bliss', predcontrib=TRUE)
 
-    df %>%
+    prediction = df %>%
         dplyr::mutate(predicted_aoc = pred_aoc,
                       predicted_bliss = pred_bliss)
+
+    list(predictions=predictions, bliss_contributions=feature_shap_bliss, aoc_contribution=feature_shap_aoc)
 }
