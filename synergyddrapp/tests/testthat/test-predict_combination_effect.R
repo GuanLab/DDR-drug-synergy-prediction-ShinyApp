@@ -1,4 +1,4 @@
-test_that("output of R and python is equal", {
+test_that("output for optimal combination prediction is equal", {
   
   # access example file
   ex_df <- synergyddrapp::example_input
