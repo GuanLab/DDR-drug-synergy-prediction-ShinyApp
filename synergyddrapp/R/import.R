@@ -1,5 +1,5 @@
 #' @importFrom magrittr %>%
 #' @importFrom lightgbm lgb.load
-#' @importreadr here dplyr
+#' @import readr here dplyr jsonlite
 #' 
 NULL
