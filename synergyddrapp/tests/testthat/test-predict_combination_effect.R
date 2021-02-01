@@ -1,10 +1,10 @@
-test_that("output of R and python is equal", {
+test_that("output for optimal combination prediction is equal", {
   
   # access example file
   ex_df <- synergyddrapp::example_input
 
   # define path to file (required for python access)
-  data_path = system.file(package="synergyddrapp")
+  data_path = system.file("extdata", package="synergyddrapp")
 
   # run python implementation
   python_impl <- predict_optimal_drug_combination(mol_df=ex_df, data_path=data_path)
