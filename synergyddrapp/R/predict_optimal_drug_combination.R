@@ -6,9 +6,10 @@
 #' @return best drug combinations based on prediction
 #' 
 #' @export
-predict_optimal_drug_combination = function(mol_df, data_path) {
+predict_optimal_drug_combination = function(mol_df, data_path){
 
-    reticulate::source_python(system.file("python", "main_prediction.py", package="synergyddrapp")) 
+	# we can't used python
+    #reticulate::source_python(system.file("python", "main_prediction.py", package="synergyddrapp")) 
     
     all_drugs = synergyddrapp::drug_summary
 

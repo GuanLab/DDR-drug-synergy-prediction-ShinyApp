@@ -7,7 +7,6 @@
 #' @importreadr jsonlite
 #' 
 #' 
-##liberary(jsonlite)
 build_feature_dataset <- function(data, mol, features, data_path){
   # load feature datasets
   # chemical structure
@@ -33,7 +32,7 @@ build_feature_dataset <- function(data, mol, features, data_path){
   drug2idx()
   moa2idx()
   
-  build_features <- function(row){
+  build_features <- function(data){
     # moa features (2)
     moa2idx()
     # drug name features (2)
@@ -50,10 +49,11 @@ build_feature_dataset <- function(data, mol, features, data_path){
       genes <- intersect(colnames(geneset)[-1], target_genes)
       feature_val <- rowSums(geneset[,genes])
       feature_name <- geneset[['geneset']]
-      
+    
+    # concatennate all features and feature names above
     X, feature_names
   }
- 
+  # question: what is the input format for lightGBM prediction? feature names were supposed to be used for SHAP analysis.
   X,feature_names <- build_features(data) 
 }
 
