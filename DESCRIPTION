@@ -1,6 +1,6 @@
 Package: synergyddrapp
 Title: Shiny app for drug synergy prediction
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Authors@R: 
     person(given = "Hanrui",
            family = "Zhang",
@@ -27,6 +27,8 @@ Imports:
     readr,
     here,
     reticulate,
-    dplyr
+    dplyr,
+    magrittr,
+    ggplot2
 Depends: 
     R (>= 2.10)
