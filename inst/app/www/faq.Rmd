@@ -1,0 +1,56 @@
+---
+theme: yeti
+title: FAQ
+output:
+  bookdown::html_document2:
+    self_contained: true
+    theme: flatly
+    toc: yes
+    toc_float: true
+    toc_depth: 3
+---
+
+<style type="text/css">
+
+body{ /* Normal  */
+      font-size: 12px;
+  }
+h1 {
+  font-size: 13px;
+  font-weight: bold;
+}
+</style>
+
+# Where can I find the contribution of individual features on the overall prediction?
+
+The Model > Shap analysis menu displays an interactive plot with the different
+feature categories. Initially, the plot displays the top level of categories,
+clicking on one of the categories will zoom into the respective category and
+only show a plot for the respective category. By default the top ten features
+are displayed, other features can be selected via the input fields in the top 
+right corner. The button in the top left corner allows you to go one ceature
+category back.
+
+# Where can I find the synery and efficacy of a specific cell line?
+
+The Model > Prediction menu displays synergy and efficacy scores for individual
+cell lines. The table on the left side lists all available treatment 
+combinations and the scatter plot on the right side the synergy and efficacy scores.
+Individual treatment combinations of a cell line can be selected via clicking 
+a point in the scatterplot, or a row in the table on the right side. Additionally,
+the input fields above each column or the search field in the top right corner
+of the table can be used to search for specific mode of actions or treatments.
+
+# Where can I find a list of input features that are used by the moden?
+
+The Model > Input menu displays plots for the different input features. You can
+navigate through the different feature categories by clicking on one of the 
+categories. The button in the left top corner allows you to step back into a
+higher category. The input field oin the top right corner allows you to select
+specific features, by default, only the top 10 features are displayed
+
+# How can I upload molecular data of my cell line and identify preferable drug combinations?
+
+The Prediction menu entry allows you to upload a tsv file of your own data. 
+After the data is uploaded, the app scores all drug treatment combinations
+and displays you the top candidates.

@@ -1,0 +1,8 @@
+.vscode
+.Rproj.user
+.Rhistory
+.Rdata
+.httr-oauth
+.DS_Store
+*.code-workspace
+*.Rproj

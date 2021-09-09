@@ -1,0 +1,49 @@
+Package: guanlabddrdrugcombination
+Title: Shiny app for DDR drug synergy prediction model
+Version: 0.0.1
+Authors@R: 
+    person(given = "Julian",
+           family = "Kreis",
+           role = c("aut", "cre"),
+           email = "julian.kreis@external.merckgroup.com",
+           comment = c(ORCID = "0000-0002-1084-8481"))
+Description: This package provides a shiny app for visualizing input and output of the model for DDR drug synergy predictions. The app allows to load expression data to predict synergy and efficacy scores, which which then visualized.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Depends: 
+    R (>= 3.5.0),
+    shiny (>= 1.6),
+    dplyr,
+    ggplot2,
+    lightgbm,
+    tidyr
+Suggests: 
+    covr,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Imports: 
+    rlang,
+    magrittr,
+    fst,
+    tidyselect,
+    here,
+    purrr,
+    R.utils,
+    broom,
+    digest,
+    forcats,
+    ggiraph,
+    glue,
+    plyr,
+    readr,
+    shinyWidgets,
+    shinyjqui,
+    shinyjs,
+    stringr,
+    tibble,
+    viridis,
+    DT,
+    bslib

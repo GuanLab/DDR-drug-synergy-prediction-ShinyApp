@@ -1,0 +1,60 @@
+---
+output: github_document
+---
+```{r, echo = FALSE}
+
+description <- read.dcf('DESCRIPTION')
+version <- as.vector(description[, 'Version'])
+rvers = stringr::str_extract(pattern = "\\d+\\.\\d\\.\\d+", string =  as.vector(description[,"Depends"]))
+```
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://choosealicense.com/licenses/mit/)[![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-yellowgreen.svg)](/commits/master)[![minimal R version](https://img.shields.io/badge/R%3E%3D-`r rvers`-6666ff.svg)](https://cran.r-project.org/)[![packageversion](https://img.shields.io/badge/Package%20version-`r version`-orange.svg?style=flat-square)](commits/master)
+
+<!-- badges: start -->
+  [![R-CMD-check](https://github.com/GuanLab/DDR-drug-synergy-prediction-ShinyApp/workflows/R-CMD-check/badge.svg)](https://github.com/GuanLab/DDR-drug-synergy-prediction-ShinyApp/actions)
+  <!-- badges: end -->
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# guanlabddrdrugcombination
+
+Welcome to our shiny app for DDR drug synergy and efficacy prediction repository.
+This repository implements a shiny app that provides a general overview of all
+features used for the predictions, the predictions on out 67 cell lines and summary
+plots for SHAP analysis on out data. Additionally, you can upload molecular data
+and analyse predicted synergy and efficacy scores of our model
+
+## Requirements
+
+This application was tested using R 4.1.1.
+
+
+## Installation
+
+To run the app, you will need to install the devtools package.
+
+```{R, eval=FALSE}
+install.packages('devtools')
+```
+
+Next you can install the app using:
+
+```{R, eval=FALSE}
+devtools::install_github("GuanLab/DDR-drug-synergy-prediction-ShinyApp")
+```
+
+After a restart of your R session, you can start the app using:
+
+```{R, eval=FALSE}
+library(guanlabddrdrugcombination)
+
+launch_synergy_ddr_app()
+```

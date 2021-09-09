@@ -1,0 +1,41 @@
+{
+  "input": {
+    "aoc_bliss_prediction-aoc_bliss_sample": "ONCOLEAD_CELL_HT29",
+    "aoc_bliss_prediction-nextBtn": 0,
+    "aoc_bliss_prediction-prvBtn": 0,
+    "aoc-collapse-collapse": 0,
+    "aoc-prev": 0,
+    "aoc-x_breaks": [
+      "Chemical Structure",
+      "Drug Name",
+      "Geneset",
+      "Mode-of-action",
+      "Molecular Biomarker"
+    ],
+    "bliss-collapse-collapse": 0,
+    "bliss-prev": 0,
+    "bliss-x_breaks": [
+      "Chemical Structure",
+      "Drug Name",
+      "Geneset",
+      "Mode-of-action",
+      "Molecular Biomarker"
+    ],
+    "input-collapse-collapse": 0,
+    "input-prev": 0,
+    "input-x_breaks": [
+      "Chemical Structure",
+      "Geneset",
+      "Molecular Biomarker",
+      "Drug Name",
+      "Mode-of-action"
+    ],
+    "score_data-file1": null
+  },
+  "output": {
+
+  },
+  "export": {
+
+  }
+}
