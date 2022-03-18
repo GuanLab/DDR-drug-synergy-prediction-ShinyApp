@@ -22,6 +22,12 @@ out data. Additionally, you can upload molecular data and analyse
 predicted synergy and efficacy scores of our model
 
 ## Requirements
+<<<<<<< HEAD
+
+-   R 4.1.1
+-   git2r
+-   renv
+=======
 
 -   R 4.1.1
 -   git2r
@@ -29,6 +35,21 @@ predicted synergy and efficacy scores of our model
 
 ## Installation
 
+To run the app, you will need to install the devtools, git2r and renv
+package. The following code will clone and restore the R package
+versions that were tested by us.
+
+``` r
+install.packages(c('renv', 'git2r'))
+
+current_dir = getwd()
+>>>>>>> f20fc88cc5d3e5d800fe4e96518b663a446c9b92
+
+# Create a local folder
+tmpdir = here::here(tempdir(), "guan_repo")
+dir.create(tmpdir)
+
+<<<<<<< HEAD
 To run the app, you will need to install the devtools, git2r and renv
 package. The following code will clone and restore the R package
 versions that were tested by us.
@@ -45,6 +66,22 @@ renv::activate(project = "guanlabddrdrugcombination")
 renv::restore(project = "guanlabddrdrugcombination", prompt = FALSE)
 
 shiny::runApp('guanlabddrdrugcombination/inst/app/')
+=======
+# Clone repository
+git2r::clone("https://github.com/GuanLab/DDR-drug-synergy-prediction-ShinyApp.git", 
+             tmpdir,
+             branch = "renv_support")
+
+# Initialize and restore packages using renv
+renv::activate(project = tmpdir)
+renv::restore(project = tmpdir, prompt = FALSE)
+setwd(tmpdir)
+
+# Start the app
+shiny::runApp("inst/app/")
+
+setwd(current_dir)
+>>>>>>> f20fc88cc5d3e5d800fe4e96518b663a446c9b92
 ```
 
 After a restart of your R session, you can start the app using:
