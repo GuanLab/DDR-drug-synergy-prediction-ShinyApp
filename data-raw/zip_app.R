@@ -12,6 +12,7 @@ dest_path  = here::here('inst/app/')
 setwd(dest_path)
 
 files = list.files(dest_path)
+files = files[files != "tests"]
 
 zip(zipfile = here::here("inst/extdata/app_data.zip"), 
     files = files)
