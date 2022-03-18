@@ -1,6 +1,6 @@
 Package: guanlabddrdrugcombination
 Title: Shiny app for DDR drug synergy prediction model
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: 
     person(given = "Julian",
            family = "Kreis",
