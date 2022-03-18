@@ -34,21 +34,28 @@ and analyse predicted synergy and efficacy scores of our model
 
 ## Requirements
 
-This application was tested using R 4.1.1.
-
+* R 4.1.1
+* git2r
+* renv
 
 ## Installation
 
-To run the app, you will need to install the devtools package.
+To run the app, you will need to install the devtools, git2r and renv package.
+The following code will clone and restore the R package versions that were
+tested by us.
 
 ```{R, eval=FALSE}
-install.packages('devtools')
-```
+install.packages(c('renv', 'git2r'))
 
-Next you can install the app using:
+# Clone repository
+git2r::clone("https://github.com/GuanLab/DDR-drug-synergy-prediction-ShinyApp.git", 
+             branch = "renv_support", local_path="guanlabddrdrugcombination")
 
-```{R, eval=FALSE}
-devtools::install_github("GuanLab/DDR-drug-synergy-prediction-ShinyApp")
+# Initialize and restore packages using renv
+renv::activate(project = "guanlabddrdrugcombination")
+renv::restore(project = "guanlabddrdrugcombination", prompt = FALSE)
+
+shiny::runApp('guanlabddrdrugcombination/inst/app/')
 ```
 
 After a restart of your R session, you can start the app using:
