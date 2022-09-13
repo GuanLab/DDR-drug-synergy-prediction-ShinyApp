@@ -7,7 +7,7 @@ version](https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg)](https://cran.r-
 
 [![R-CMD-check](https://github.com/GuanLab/DDR-drug-synergy-prediction-ShinyApp/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/GuanLab/DDR-drug-synergy-prediction-ShinyApp/actions/workflows/R-CMD-check.yaml)
 
-# guanlabddrdrugcombination
+# DeepDDR
 
 Welcome to our shiny app for DDR drug synergy and efficacy prediction
 repository. This repository implements a shiny app that provides a
