@@ -2,10 +2,10 @@ test_that("scoring user uploaded data works", {
   shiny::testServer(
     score_data_server, {
       session$setInputs(file1 = list(datapath = system.file("extdata/example_input.tsv",
-                                            package = "guanlabddrdrugcombination")))
+                                            package = "synddr")))
 
       df = readr::read_tsv(system.file("extdata/example_input.tsv",
-                                       package = "guanlabddrdrugcombination"),
+                                       package = "synddr"),
                            show_col_types = FALSE)
 
       testthat::expect_equal(valid_df(), df)
