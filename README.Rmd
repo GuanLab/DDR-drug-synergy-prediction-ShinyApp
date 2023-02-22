@@ -24,7 +24,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# guanlabddrdrugcombination
+# SynDDR
 
 Welcome to our shiny app for DDR drug synergy and efficacy prediction repository.
 This repository implements a shiny app that provides a general overview of all
