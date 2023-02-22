@@ -21,7 +21,7 @@ launch_synergy_ddr_app = function(fst_folder=NULL) {
   
   # Copy relevat files
   file.copy(system.file("extdata/app_data.zip", 
-                        package = "guanlabddrdrugcombination"), 
+                        package = "synddr"), 
             app_dir, recursive=TRUE)
   
   # Unzip files
