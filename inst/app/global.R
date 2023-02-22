@@ -7,7 +7,7 @@ library(ggplot2)
 library(dplyr)
 library(DT)
 library(ggiraph)
-library(guanlabddrdrugcombination)
+library(synddr)
 
 # set options for fst data access
 options(fst_folder = "~/fst")
