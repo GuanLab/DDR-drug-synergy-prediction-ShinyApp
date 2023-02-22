@@ -55,6 +55,7 @@ After a restart of your R session, you can start the app using:
 
 ```{R, eval=FALSE}
 library(guanlabddrdrugcombination)
+library(deepddr)
 
 launch_synergy_ddr_app()
 ```
