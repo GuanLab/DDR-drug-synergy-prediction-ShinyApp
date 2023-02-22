@@ -3,7 +3,7 @@
 
 test_that("definition of a feature dataset works", {
   mol = readr::read_tsv(system.file("extdata/example_input.tsv",
-                                    package = "guanlabddrdrugcombination"),
+                                    package = "synddr"),
                         show_col_types = FALSE)
   features = build_feature_dataset(drug_moa_combn, mol) %>%
     dplyr::rename(Treatment_1_moa=.metadata_moa_1,
