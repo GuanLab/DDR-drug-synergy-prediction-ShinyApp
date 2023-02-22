@@ -1,4 +1,4 @@
 library(testthat)
-library(deepddr)
+library(synddr)
 
-test_check("deepddr")
+test_check("synddr")
