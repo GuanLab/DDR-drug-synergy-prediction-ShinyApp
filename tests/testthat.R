@@ -1,4 +1,4 @@
 library(testthat)
-library(guanlabddrdrugcombination)
+library(deepddr)
 
-test_check("guanlabddrdrugcombination")
+test_check("deepddr")
