@@ -1,7 +1,7 @@
 test_that("predict combination effect works", {
   
   mol = readr::read_tsv(system.file("extdata", "example_input.tsv",
-                                    package = "guanlabddrdrugcombination"),
+                                    package = "synddr"),
                         show_col_types = FALSE)
   
   features <- build_feature_dataset(data=drug_moa_combn,
@@ -26,7 +26,7 @@ test_that("predict combination effect works", {
   # aoc_Y = predict_combination_effect(X           = aoc_X,
   #                                    pred_target = 'aoc',
   #                                    path        = system.file("models",
-  #                                                              package = "guanlabddrdrugcombination"),
+  #                                                              package = "synddr"),
   #                                    threads     = 1,
   #                                    predcontrib = TRUE)
 })
