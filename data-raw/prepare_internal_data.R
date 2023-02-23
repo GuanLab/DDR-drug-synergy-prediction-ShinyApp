@@ -1,5 +1,5 @@
 library(dplyr)
-library(guanlabddrdrugcombination)
+library(synddr)
 
 
 aoc_features = readr::read_tsv(here::here("data-raw/feature/in_aoc_model.tsv"),
@@ -19,10 +19,10 @@ drug2gene = jsonlite::read_json(here::here('data-raw/feature/drug2gene.json'))
 
 drug_summary = readr::read_csv(here::here('data-raw/feature/all_drugs_summary.csv'))
 
-tratment_comb_2 <- guanlabddrdrugcombination:::.combn_pair(drug_summary, "drug_name") %>%
+tratment_comb_2 <- synddr:::.combn_pair(drug_summary, "drug_name") %>%
   dplyr::rename(.metadata_treatment_1=X1, .metadata_treatment_2=X2)
 
-moa_comb_2 <- guanlabddrdrugcombination:::.combn_pair(drug_summary, "mode-of-action") %>%
+moa_comb_2 <- synddr:::.combn_pair(drug_summary, "mode-of-action") %>%
   dplyr::rename(.metadata_moa_1=X1, .metadata_moa_2=X2)
 
 drug_moa_combn <- cbind(moa_comb_2, tratment_comb_2) %>%

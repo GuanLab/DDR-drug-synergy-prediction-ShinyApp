@@ -21,7 +21,7 @@ server = function(input, output, session) {
   shap_summary_aoc = shiny::reactive({
 
     # TODO check if there is a translation available for a feature and replace with action name
-    guanlabddrdrugcombination::summarize_shap_values(
+    synddr::summarize_shap_values(
       feature_annotation = feature_annotation(), 
       shap_view          = shap_view,
       input_view        = inputs_view,
@@ -40,7 +40,7 @@ server = function(input, output, session) {
   shap_summary_bliss = shiny::reactive({
 
     # TODO check if there is a translation available for a feature and replace with action name
-    guanlabddrdrugcombination::summarize_shap_values(
+    synddr::summarize_shap_values(
       feature_annotation = feature_annotation(),
       shap_view          = shap_view,
       input_view        = inputs_view,
@@ -59,7 +59,7 @@ server = function(input, output, session) {
   input_summary = shiny::reactive({
 
     # TODO check if there is a translation available for a feature and replace with action name
-    guanlabddrdrugcombination::summarize_input_values(
+    synddr::summarize_input_values(
       feature_annotation = feature_annotation(),
       view               = inputs_view,
       active_x           = selected_input_category())

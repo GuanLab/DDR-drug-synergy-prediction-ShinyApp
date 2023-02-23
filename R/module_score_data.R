@@ -58,7 +58,7 @@ score_data_server = function(id) {
 
       example_df = shiny::reactive({
         system.file("extdata/example_input.tsv",
-                    package = "guanlabddrdrugcombination") %>%
+                    package = "synddr") %>%
           read.table(header = TRUE, sep = "\t")
       })
 
@@ -104,7 +104,7 @@ score_data_server = function(id) {
                                     "No valid data uploaded"))
 
         predict_optimal_drug_combination(model_path = system.file("models",
-                                                                  package = "guanlabddrdrugcombination"),
+                                                                  package = "synddr"),
                                          mol_df=valid_df())
       })
 

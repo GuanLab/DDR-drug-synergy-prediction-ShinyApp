@@ -54,8 +54,7 @@ devtools::install_github("GuanLab/DDR-drug-synergy-prediction-ShinyApp")
 After a restart of your R session, you can start the app using:
 
 ```{R, eval=FALSE}
-library(guanlabddrdrugcombination)
-library(deepddr)
+library(synddr)
 
 launch_synergy_ddr_app()
 ```
