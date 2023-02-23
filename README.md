@@ -35,7 +35,17 @@ To run the app, you will need to install the devtools package.
 install.packages('devtools')
 ```
 
-Next you can install the app using:
+To run the developement version:
+
+``` r
+devtools::install_github("GuanLab/DDR-drug-synergy-prediction-ShinyApp", ref="develop")
+```
+Then run:
+``` r
+guanlabddrdrugcombination::launch_synergy_ddr_app()
+```
+
+
 
 ``` r
 devtools::install_github("GuanLab/DDR-drug-synergy-prediction-ShinyApp")
