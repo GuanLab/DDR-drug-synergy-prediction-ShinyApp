@@ -1,7 +1,7 @@
 
 # Define UI for application that draws a histogram
 ui = shiny::navbarPage(
-  title = "Synergy DDR",
+  title = "SynDDR",
   theme = bslib::bs_theme(version = 4, bootswatch = "materia"),
   shiny::tabPanel("Welcome",
            shiny::fluidPage(
