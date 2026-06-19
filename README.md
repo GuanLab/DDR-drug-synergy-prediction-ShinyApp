@@ -20,6 +20,8 @@ predictions on our 62 cell lines and summary plots for SHAP analysis on
 our data. Additionally, a user has the opportunity to upload molecular data and analyse
 predicted synergy and efficacy scores of our model
 
+The repository for the full model is available at https://github.com/GuanLab/DDR-Drug-Synergy-Prediction.git.
+
 <img width="1438" alt="App screenshot for predicted efficacy and synergy scores as described in publication" src="https://user-images.githubusercontent.com/25581180/132656337-80ced6ac-e184-4188-aefb-42006f902119.png">
 
 For scoring new experimental data, the user only needs to upload the TPM expression values for 78 genes:

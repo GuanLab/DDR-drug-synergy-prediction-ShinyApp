@@ -36,6 +36,8 @@ features used for the predictions, the predictions on out 67 cell lines and summ
 plots for SHAP analysis on out data. Additionally, you can upload molecular data
 and analyse predicted synergy and efficacy scores of our model
 
+The repository for the full model is available at https://github.com/GuanLab/DDR-Drug-Synergy-Prediction.git.
+
 ## Requirements
 
 This application was tested using R 4.1.1.
