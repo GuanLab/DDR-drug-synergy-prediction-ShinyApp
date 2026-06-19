@@ -9,6 +9,10 @@ version](https://img.shields.io/badge/R%3E%3D-3.5.0-6666ff.svg)](https://cran.r-
 
 # SynDDR
 
+<p align="center">
+	<img src="SynDDR.png" alt="SynDDR logo" width="300">
+</p>
+
 Welcome to our shiny app for DDR drug synergy and efficacy prediction
 repository. This repository implements a shiny app that provides a
 general overview of all features used for the predictions, the

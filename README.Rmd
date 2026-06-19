@@ -26,6 +26,10 @@ knitr::opts_chunk$set(
 
 # SynDDR
 
+<p align="center">
+  <img src="SynDDR.png" alt="SynDDR logo" width="300">
+</p>
+
 Welcome to our shiny app for DDR drug synergy and efficacy prediction repository.
 This repository implements a shiny app that provides a general overview of all
 features used for the predictions, the predictions on out 67 cell lines and summary
