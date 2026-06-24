@@ -321,7 +321,7 @@ score_data_server = function(id) {
           DT::selectRows(as.numeric(selected_rows()))
       })
 
-      output$aoc_bliss = ggiraph::renderggiraph({
+      output$aoc_bliss = ggiraph::renderGirafe({
 
         shiny::req(!is.null(predictions()),
                    !is.null(input$aoc_bliss_sample),

@@ -275,7 +275,7 @@ prediction_server = function(id, view= list()) {
       })
 
       # Create a plot output
-      output$aoc_bliss = ggiraph::renderggiraph({
+      output$aoc_bliss = ggiraph::renderGirafe({
 
         shiny::req(!is.null(predictions()),
                    !is.null(input$aoc_bliss_sample),

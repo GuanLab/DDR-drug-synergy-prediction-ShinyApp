@@ -28,7 +28,7 @@ nested_plot_ui = function(id, x_breaks_name="Breaks", info_text=shiny::HTML(""),
                  style="float: right")),
         shiny::div(style="height: 85px; width: 20; z-index: -1; position: relative; margin-bottom: 10px;"),
         shinyjqui::jqui_resizable(
-          ggiraph::ggiraphOutput(ns("categories_plt"), height = "450px", width = "100%")
+          ggiraph::girafeOutput(ns("categories_plt"), height = "450px", width = "100%")
         ),
         info_title,
         info_text,
@@ -183,7 +183,7 @@ nested_plot_server = function(id, top_level_name, plot_title=NULL, summary,
                                         selected = selected)
       })
 
-      output$categories_plt = ggiraph::renderggiraph({
+      output$categories_plt = ggiraph::renderGirafe({
         shiny::validate(
           shiny::need(!is.null(summary()), "Loading data"))
 
