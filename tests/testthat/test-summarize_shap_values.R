@@ -34,7 +34,7 @@ test_that("Level 1 categories are summarized correctely", {
     tidyr::separate(measure, into = c("output", "fold"), sep="_y_") %>%
     dplyr::rename(x=category)
 
-  testthat::expect_true(dplyr::all_equal(all_aoc$df, shaps))
+  expect_equal_data_frame(all_aoc$df, shaps)
 
   shaps = load_fst(shap_view, filter = list(feature = molecular_biomarker_features),
                    cols = c(".identifier_sample_name", "feature",
@@ -50,7 +50,7 @@ test_that("Level 1 categories are summarized correctely", {
     tidyr::separate(measure, into = c("output", "fold"), sep="_y_") %>%
     dplyr::rename(x=category)
 
-  testthat::expect_true(dplyr::all_equal(all_bliss$df, shaps))
+  expect_equal_data_frame(all_bliss$df, shaps)
 })
 
 test_that("Level 2 categories are summarized correctely", {
@@ -84,7 +84,7 @@ test_that("Level 2 categories are summarized correctely", {
     tidyr::separate(measure, into = c("output", "fold"), sep="_y_") %>%
     dplyr::rename(x=molecular_biomarker)
 
-  testthat::expect_true(dplyr::all_equal(all_aoc$df, shaps))
+  expect_equal_data_frame(all_aoc$df, shaps)
 
   shaps = load_fst(shap_view, filter = list(feature = molecular_biomarker_features$feature),
                    cols = c(".identifier_sample_name", "feature",
@@ -100,7 +100,7 @@ test_that("Level 2 categories are summarized correctely", {
     tidyr::separate(measure, into = c("output", "fold"), sep="_y_") %>%
     dplyr::rename(x = molecular_biomarker)
 
-  testthat::expect_true(dplyr::all_equal(all_bliss$df, shaps))
+  expect_equal_data_frame(all_bliss$df, shaps)
 })
 
 # 
@@ -139,7 +139,7 @@ test_that("Level 3 numerical features are summarized correctly", {
     tidyr::separate(measure, into = c("output", "fold"), sep="_y_") %>%
     dplyr::rename(x = feature)
 
-  testthat::expect_true(dplyr::all_equal(all_aoc$df, shaps))
+  expect_equal_data_frame(all_aoc$df, shaps)
 
   cols = columns %>%
     dplyr::select(dplyr::starts_with(c(".iden", ".meta", ".response",
@@ -159,7 +159,7 @@ test_that("Level 3 numerical features are summarized correctly", {
     tidyr::separate(measure, into = c("output", "fold"), sep="_y_") %>%
     dplyr::rename(x = feature)
 
-  testthat::expect_true(dplyr::all_equal(all_bliss$df, shaps))
+  expect_equal_data_frame(all_bliss$df, shaps)
 })
 
 
@@ -201,7 +201,7 @@ test_that("Level 3 categorical features are summarized correctely", {
     dplyr::rename(x = feature)
 
 
-  testthat::expect_true(dplyr::all_equal(all_aoc$df, shaps))
+  expect_equal_data_frame(all_aoc$df, shaps)
 
   cols = columns %>%
     dplyr::select(dplyr::starts_with(c(".iden", ".meta", ".response",
@@ -222,5 +222,5 @@ test_that("Level 3 categorical features are summarized correctely", {
     tidyr::separate(measure, into=c("output", "fold"), sep="_y_") %>%
     dplyr::rename(x = feature)
 
-  testthat::expect_true(dplyr::all_equal(all_bliss$df, shaps))
+  expect_equal_data_frame(all_bliss$df, shaps)
 })
