@@ -8,7 +8,7 @@ input_view = "merck_cell_var_guan_features_21q2_dev_kreis_0.fst"
 
 feature_annotation = create_feature_categories(view = shap_view)
 
-test_that("Level 1 categories are summarized correctely", {
+test_that("Level 1 categories are summarized correctly", {
 
   molecular_biomarker_features = feature_annotation %>%
     dplyr::pull(feature)
@@ -53,7 +53,7 @@ test_that("Level 1 categories are summarized correctely", {
   expect_equal_data_frame(all_bliss$df, shaps)
 })
 
-test_that("Level 2 categories are summarized correctely", {
+test_that("Level 2 categories are summarized correctly", {
 
   molecular_biomarker_features = feature_annotation %>%
     dplyr::filter(category == "Molecular Biomarker") %>%
@@ -163,7 +163,7 @@ test_that("Level 3 numerical features are summarized correctly", {
 })
 
 
-test_that("Level 3 categorical features are summarized correctely", {
+test_that("Level 3 categorical features are summarized correctly", {
 
   columns = load_fst(shap_view, peek=TRUE)
 
