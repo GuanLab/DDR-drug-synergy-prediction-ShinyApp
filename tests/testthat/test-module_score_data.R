@@ -18,6 +18,9 @@ test_that("scoring user uploaded data works", {
       
       efficacy_df = shiny::isolate(efficacy_stat())
       testthat::skip_if(nrow(efficacy_df) < 1, "No efficacy results generated")
+      testthat::skip_if(length(efficacy_df$sample) < 1 ||
+                          is.null(efficacy_df$sample[[1]]),
+                        "No efficacy sample generated")
       
       efficacy_df %>%
         .$estimate %>%

@@ -20,8 +20,11 @@ predict_combination_effect = function(X, pred_target, predcontrib=FALSE,
   preds = purrr::map(all_model_path, function(x) {
     reg = readRDS(x)
     predictor = reg$to_predictor()
-    predictor_formals = tryCatch(names(formals(predictor$predict)),
-                                 error = function(...) character())
+    predict_function = predictor$predict
+    if (!is.function(predict_function))
+      stop("LightGBM predictor does not expose a predict method")
+
+    predictor_formals = names(formals(predict_function))
     predictor_args = list(
       data = data,
       start_iteration = 0L,
@@ -35,7 +38,7 @@ predict_combination_effect = function(X, pred_target, predcontrib=FALSE,
     if ("reshape" %in% predictor_formals)
       predictor_args$reshape = FALSE
 
-    do.call(predictor$predict, predictor_args)
+    do.call(predict_function, predictor_args)
   })
 
   all_shap = c()
