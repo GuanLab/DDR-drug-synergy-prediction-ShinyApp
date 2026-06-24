@@ -15,9 +15,47 @@ predict_combination_effect = function(X, pred_target, predcontrib=FALSE,
                               full.names=T,
                               pattern = pred_target)
 
+  predict_with_fallback = function(reg, newdata, predcontrib) {
+    # Some serialized model wrappers call an internal predictor with
+    # a stale reshape argument. Fall back to stable prediction APIs.
+    primary = tryCatch({
+      reg$predict(newdata, predcontrib = predcontrib)
+    }, error = function(e) e)
+
+    if (!inherits(primary, "error"))
+      return(primary)
+
+    use_fallback = grepl("unused argument \\(reshape = reshape\\)",
+                         primary$message, fixed = FALSE)
+    if (!use_fallback)
+      stop(primary)
+
+    fallback_predict = function(model) {
+      tryCatch({
+        stats::predict(model, newdata = newdata, predcontrib = predcontrib)
+      }, error = function(e) e)
+    }
+
+    candidates = list(reg)
+    if (!is.null(reg$finalModel))
+      candidates = c(candidates, list(reg$finalModel))
+    if (!is.null(reg$booster))
+      candidates = c(candidates, list(reg$booster))
+
+    for (candidate in candidates) {
+      res = fallback_predict(candidate)
+      if (!inherits(res, "error"))
+        return(res)
+    }
+
+    stop(primary)
+  }
+
   preds = purrr::map(all_model_path, function(x) {
     reg = readRDS(x)
-    reg$predict(as.matrix(X),  predcontrib=predcontrib)
+    predict_with_fallback(reg = reg,
+                          newdata = as.matrix(X),
+                          predcontrib = predcontrib)
   })
 
   all_shap = c()
