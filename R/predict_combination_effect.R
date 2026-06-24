@@ -22,7 +22,7 @@ predict_combination_effect = function(X, pred_target, predcontrib=FALSE,
     predictor = reg$to_predictor()
     predict_function = predictor$predict
     if (!is.function(predict_function))
-      stop("LightGBM predictor does not expose a predict method")
+      stop("LightGBM predictor does not expose a predict method. Verify the model object is valid and compatible with the installed lightgbm version.")
 
     predictor_formals = names(formals(predict_function))
     predictor_args = list(
