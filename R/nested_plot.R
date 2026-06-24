@@ -211,12 +211,22 @@ nested_plot_server = function(id, top_level_name, plot_title=NULL, summary,
                                 colnames(df))) {
 
 
-          plt = ggplot(df, aes_string(x=x_var, ymin="min", ymax="max",
-                         middle="middle", upper="upper",
-                         lower="lower"))+
+          plt = ggplot2::ggplot(
+            df,
+            ggplot2::aes(
+              x = rlang::.data[[x_var]],
+              ymin = rlang::.data[["min"]],
+              ymax = rlang::.data[["max"]],
+              middle = rlang::.data[["middle"]],
+              upper = rlang::.data[["upper"]],
+              lower = rlang::.data[["lower"]]
+            )
+          )+
             ggiraph::geom_boxplot_interactive(stat="identity",
-                                              aes(tooltip=feature,
-                                                  data_id=feature)) +
+                                              ggplot2::aes(
+                                                tooltip = rlang::.data[["feature"]],
+                                                data_id = rlang::.data[["feature"]]
+                                              )) +
             ggplot2::theme_bw(base_size = 20) +
             ggplot2::scale_x_discrete(guide = guide_axis(n.dodge = 2))
 
@@ -235,9 +245,14 @@ nested_plot_server = function(id, top_level_name, plot_title=NULL, summary,
             dplyr::mutate(!!x_var := factor(!!rlang::sym(x_var),
                                             levels=stat[[x_var]]))
 
-          plt = ggplot2::ggplot(df, ggplot2::aes_string(x=x_var, y=y_var)) +
-            ggiraph::geom_boxplot_interactive(ggplot2::aes_string(tooltip = x_var,
-                                                                  data_id = x_var)) +
+          plt = ggplot2::ggplot(
+            df,
+            ggplot2::aes(x = rlang::.data[[x_var]], y = rlang::.data[[y_var]])
+          ) +
+            ggiraph::geom_boxplot_interactive(ggplot2::aes(
+              tooltip = rlang::.data[[x_var]],
+              data_id = rlang::.data[[x_var]]
+            )) +
             ggplot2::labs(title = plot_title) +
             ggplot2::theme_bw(base_size = 20)
 
@@ -282,10 +297,13 @@ nested_plot_server = function(id, top_level_name, plot_title=NULL, summary,
 
           plt = df %>%
             ggplot2::ggplot() +
-            ggiraph::geom_col_interactive(ggplot2::aes_string(x=x_var, y=y_var,
-                                                              data_id=x_var,
-                                                              tooltip=x_var,
-                                                              fill=fill_var)) +
+            ggiraph::geom_col_interactive(ggplot2::aes(
+              x = rlang::.data[[x_var]],
+              y = rlang::.data[[y_var]],
+              data_id = rlang::.data[[x_var]],
+              tooltip = rlang::.data[[x_var]],
+              fill = rlang::.data[[fill_var]]
+            )) +
             ggplot2::theme_bw(base_size=20) +
             viridis::scale_fill_viridis(discrete = TRUE) +
             ggplot2::guides(fill=guide_legend(fill_title))

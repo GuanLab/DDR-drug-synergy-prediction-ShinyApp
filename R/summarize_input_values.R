@@ -43,7 +43,7 @@ summarize_input_values = function(feature_annotation, view, active_x) {
       dplyr::group_by(feature_class) %>%
       dplyr::summarise(x = n()) %>%
       tidyr::separate(feature_class, into= c("category", "subcategory"),
-                      sep="_") %>%
+                      sep="_", extra = "merge", fill = "right") %>%
       dplyr::mutate(subcategory = ifelse(is.na(subcategory),
                                          category, subcategory)) %>%
       dplyr::group_by(category) %>%

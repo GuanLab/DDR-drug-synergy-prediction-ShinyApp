@@ -15,9 +15,25 @@ predict_combination_effect = function(X, pred_target, predcontrib=FALSE,
                               full.names=T,
                               pattern = pred_target)
 
+  data = as.matrix(X)
+
   preds = purrr::map(all_model_path, function(x) {
     reg = readRDS(x)
-    reg$predict(as.matrix(X),  predcontrib=predcontrib)
+    predictor = reg$to_predictor()
+    predictor_args = list(
+      data = data,
+      start_iteration = 0L,
+      num_iteration = reg$best_iter,
+      rawscore = FALSE,
+      predleaf = FALSE,
+      predcontrib = predcontrib,
+      header = FALSE
+    )
+
+    if ("reshape" %in% names(formals(predictor$predict)))
+      predictor_args$reshape = FALSE
+
+    do.call(predictor$predict, predictor_args)
   })
 
   all_shap = c()
