@@ -210,23 +210,28 @@ nested_plot_server = function(id, top_level_name, plot_title=NULL, summary,
         if(is.null(y_var) & all(c("middle", "max", "min", "lower", "upper") %in%
                                 colnames(df))) {
 
-
-          plt = ggplot2::ggplot(
-            df,
-            ggplot2::aes(
-              x = rlang::.data[[x_var]],
-              ymin = rlang::.data[["min"]],
-              ymax = rlang::.data[["max"]],
-              middle = rlang::.data[["middle"]],
-              upper = rlang::.data[["upper"]],
-              lower = rlang::.data[["lower"]]
+          boxplot_aes = do.call(
+            ggplot2::aes,
+            list(
+              x = rlang::sym(x_var),
+              ymin = rlang::sym("min"),
+              ymax = rlang::sym("max"),
+              middle = rlang::sym("middle"),
+              upper = rlang::sym("upper"),
+              lower = rlang::sym("lower")
             )
-          )+
+          )
+          boxplot_interactive_aes = do.call(
+            ggplot2::aes,
+            list(
+              tooltip = rlang::sym("feature"),
+              data_id = rlang::sym("feature")
+            )
+          )
+
+          plt = ggplot2::ggplot(df, boxplot_aes)+
             ggiraph::geom_boxplot_interactive(stat="identity",
-                                              ggplot2::aes(
-                                                tooltip = rlang::.data[["feature"]],
-                                                data_id = rlang::.data[["feature"]]
-                                              )) +
+                                              boxplot_interactive_aes) +
             ggplot2::theme_bw(base_size = 20) +
             ggplot2::scale_x_discrete(guide = guide_axis(n.dodge = 2))
 
@@ -244,15 +249,17 @@ nested_plot_server = function(id, top_level_name, plot_title=NULL, summary,
             dplyr::select(!!x_var, !!y_var) %>%
             dplyr::mutate(!!x_var := factor(!!rlang::sym(x_var),
                                             levels=stat[[x_var]]))
+          boxplot_aes = do.call(
+            ggplot2::aes,
+            list(x = rlang::sym(x_var), y = rlang::sym(y_var))
+          )
+          boxplot_interactive_aes = do.call(
+            ggplot2::aes,
+            list(tooltip = rlang::sym(x_var), data_id = rlang::sym(x_var))
+          )
 
-          plt = ggplot2::ggplot(
-            df,
-            ggplot2::aes(x = rlang::.data[[x_var]], y = rlang::.data[[y_var]])
-          ) +
-            ggiraph::geom_boxplot_interactive(ggplot2::aes(
-              tooltip = rlang::.data[[x_var]],
-              data_id = rlang::.data[[x_var]]
-            )) +
+          plt = ggplot2::ggplot(df, boxplot_aes) +
+            ggiraph::geom_boxplot_interactive(boxplot_interactive_aes) +
             ggplot2::labs(title = plot_title) +
             ggplot2::theme_bw(base_size = 20)
 
@@ -294,16 +301,19 @@ nested_plot_server = function(id, top_level_name, plot_title=NULL, summary,
          #   plt = plt + ggplot2::xlab(x_title)
         } else if ((is.character(df[[x_var]]) | is.factor(df[[x_var]])) &
                     (is.integer(df[[y_var]]) | all(df[[y_var]] == as.integer(df[[y_var]])))) {
+          col_aes = list(
+            x = rlang::sym(x_var),
+            y = rlang::sym(y_var),
+            data_id = rlang::sym(x_var),
+            tooltip = rlang::sym(x_var)
+          )
+
+          if (!is.null(fill_var))
+            col_aes$fill = rlang::sym(fill_var)
 
           plt = df %>%
             ggplot2::ggplot() +
-            ggiraph::geom_col_interactive(ggplot2::aes(
-              x = rlang::.data[[x_var]],
-              y = rlang::.data[[y_var]],
-              data_id = rlang::.data[[x_var]],
-              tooltip = rlang::.data[[x_var]],
-              fill = rlang::.data[[fill_var]]
-            )) +
+            ggiraph::geom_col_interactive(do.call(ggplot2::aes, col_aes)) +
             ggplot2::theme_bw(base_size=20) +
             viridis::scale_fill_viridis(discrete = TRUE) +
             ggplot2::guides(fill=guide_legend(fill_title))
