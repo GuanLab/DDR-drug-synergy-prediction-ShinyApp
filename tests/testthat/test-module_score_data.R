@@ -3,7 +3,6 @@ test_that("scoring user uploaded data works", {
     score_data_server, {
       session$setInputs(file1 = list(datapath = system.file("extdata/example_input.tsv",
                                             package = "synddr")))
-      session$flushReact()
 
       df = readr::read_tsv(system.file("extdata/example_input.tsv",
                                        package = "synddr"),
@@ -32,13 +31,10 @@ test_that("scoring user uploaded data works", {
         testthat::expect_equal(0.3155, tolerance = .001)
       
       session$setInputs(aoc_bliss_sample = efficacy_df$sample[[1]])
-      session$flushReact()
       session$setInputs(nextBtn = 1)
       session$setInputs(prvBtn = 1)
-      session$flushReact()
       
       session$setInputs(aoc_bliss_selected = 10)
       session$setInputs(mytable_rows_selected = 8)
-      session$flushReact()
     })
 })

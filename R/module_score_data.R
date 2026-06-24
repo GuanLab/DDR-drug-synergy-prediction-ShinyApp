@@ -158,13 +158,19 @@ score_data_server = function(id) {
 
 
       shiny::observeEvent(efficacy_stat(), {
+        stat = efficacy_stat()
 
-        models = efficacy_stat() %>%
+        models = stat %>%
           dplyr::arrange(dplyr::desc(estimate)) %>%
           dplyr::pull(sample)
 
         shinyWidgets::updatePickerInput(session, "aoc_bliss_sample",
                                         choices = models)
+
+        shinyjs::disable("prvBtn")
+        if (nrow(stat) == 1) {
+          shinyjs::disable("nextBtn")
+        }
       })
 
       efficacy_stat = shiny::reactive({
@@ -178,11 +184,6 @@ score_data_server = function(id) {
           tidyr::unnest(stat) %>%
           dplyr::select(-data) %>%
           dplyr::arrange(-estimate)
-
-        shinyjs::disable("prvBtn")
-        if (nrow(stat) == 1) {
-          shinyjs::disable("nextBtn")
-        }
 
         stat
       })
