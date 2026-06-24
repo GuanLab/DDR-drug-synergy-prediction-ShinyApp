@@ -20,6 +20,8 @@ predict_combination_effect = function(X, pred_target, predcontrib=FALSE,
   preds = purrr::map(all_model_path, function(x) {
     reg = readRDS(x)
     predictor = reg$to_predictor()
+    predictor_formals = tryCatch(names(formals(predictor$predict)),
+                                 error = function(...) character())
     predictor_args = list(
       data = data,
       start_iteration = 0L,
@@ -30,7 +32,7 @@ predict_combination_effect = function(X, pred_target, predcontrib=FALSE,
       header = FALSE
     )
 
-    if ("reshape" %in% names(formals(predictor$predict)))
+    if ("reshape" %in% predictor_formals)
       predictor_args$reshape = FALSE
 
     do.call(predictor$predict, predictor_args)
