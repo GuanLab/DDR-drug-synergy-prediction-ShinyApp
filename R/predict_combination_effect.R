@@ -16,7 +16,8 @@ predict_combination_effect = function(X, pred_target, predcontrib=FALSE,
                               pattern = pred_target)
 
   preds = purrr::map(all_model_path, function(x) {
-    reg = lightgbm::readRDS.lgb.Booster(x)
+    #reg = lightgbm::readRDS.lgb.Booster(x)
+   reg = lightgbm::readRDS(x) 
     reg$predict(as.matrix(X),  predcontrib=predcontrib, num_threads=threads)
   })
 
