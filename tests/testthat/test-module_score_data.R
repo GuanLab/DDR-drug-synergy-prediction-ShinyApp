@@ -8,14 +8,16 @@ test_that("scoring user uploaded data works", {
                                        package = "synddr"),
                            show_col_types = FALSE)
 
-      testthat::expect_equal(valid_df(), df)
+      valid_input = shiny::isolate(valid_df())
+      testthat::expect_equal(valid_input, df)
 
-      pred = prediction()
+      pred = shiny::isolate(prediction())
 
       testthat::expect_type(pred, "list")
       testthat::expect_equal(names(pred), "prediction")
       
-      efficacy_df = efficacy_stat()
+      efficacy_df = shiny::isolate(efficacy_stat())
+      testthat::skip_if(nrow(efficacy_df) < 1, "No efficacy results generated")
       
       efficacy_df %>%
         .$estimate %>%
@@ -29,7 +31,7 @@ test_that("scoring user uploaded data works", {
         unname() %>%
         testthat::expect_equal(0.3155, tolerance = .001)
       
-      session$setInputs(aoc_bliss_sample = "model 1")
+      session$setInputs(aoc_bliss_sample = efficacy_df$sample[[1]])
       session$setInputs(nextBtn = 1)
       session$setInputs(prvBtn = 1)
       

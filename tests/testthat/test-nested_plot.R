@@ -56,7 +56,7 @@ test_that("Top level summary works", {
                   
                   testthat::expect_equal(last_click(), "Expression")
                   testthat::expect_equal(last_x(), "x")
-                  testthat::expect_true(dplyr::all_equal(last_summary(), summary()$df))
+                  expect_equal_data_frame(last_summary(), summary()$df)
                   
                   shap_summary_aoc = summarize_shap_values(
                     feature_annotation = create_feature_categories(view = shap_view),
